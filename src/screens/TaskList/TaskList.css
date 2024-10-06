@@ -1,0 +1,90 @@
+.task-list {
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #f8f9fa;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.card-text {
+  margin: 0;
+  width: 100%;
+  white-space: normal;
+  line-height: 1.6;
+  font-size: 14px;
+  color: #333;
+}
+
+.status-dd {
+  background: #f8f9fa;
+  color: #007bff;
+}
+.event-dd {
+  background: #f8f9fa;
+  color: #007bff;
+}
+
+.filter-section {
+  border: 1px solid grey;
+  background: #eaeaea;
+  margin: 20px 0;
+  padding: 12px 20px;
+  border-radius: 7px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 370px) {
+  .filter-section {
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    margin: 5px;
+  }
+
+  .card-body {
+    padding: 10px;
+  }
+
+  .card-text {
+    font-size: 13px;
+  }
+}
+
+.ant-popover {
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ant-popover-inner {
+  padding: 15px;
+}
