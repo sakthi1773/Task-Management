@@ -9,6 +9,7 @@ const Modal = ({
   cancelText,
   okText,
   title,
+  footer
 }) => {
   return (
     <ADModal
@@ -19,6 +20,7 @@ const Modal = ({
       onCancel={onCancel}
       cancelText={cancelText}
       okText={okText}
+      footer={footer}
       bodyStyle={{
         display: "flex",
         justifyContent: "center",

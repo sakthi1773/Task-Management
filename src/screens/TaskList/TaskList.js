@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../../CommonComponents/Button/Button";
 import Modal from "../../CommonComponents/Modal/Modal";
-import { Input, DatePicker, message, Pagination, Popover } from "antd"; // Added Popover
+import { Input, DatePicker, message, Pagination } from "antd";
 import Dropdown from "../../CommonComponents/DropDown/DropDown";
 import TextArea from "antd/es/input/TextArea";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +18,7 @@ import {
   DeleteOutlined,
   EditOutlined,
   ExclamationCircleTwoTone,
+  EyeOutlined,
   PlusCircleOutlined,
 } from "@ant-design/icons";
 import { img } from "../../CommonComponents/Images";
@@ -39,7 +40,8 @@ const TaskList = () => {
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.task.tasks);
   const filter = useSelector((state) => state.task.filter);
-  const [isShowFilter, setIsShowFilter] = useState(false);
+  const [isShowTaskDetailsModal, setIsShowTaskDetailsModal] = useState(false);
+  const [selectedTask, setSelectedTask] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(1);
   const tasksPerPage = 6;
@@ -62,6 +64,11 @@ const TaskList = () => {
     setIsEditMode(false);
     setData({ title: "", describe: "", status: "", date: "", id: null });
     setDatePickerValue(null);
+  };
+
+  const closeTaskDetailsModal = () => {
+    setIsShowTaskDetailsModal(false);
+    setSelectedTask(null);
   };
 
   const notify = (type, content) => {
@@ -136,6 +143,11 @@ const TaskList = () => {
   const handleOnclickDelete = (id) => {
     dispatch(deleteTask(id));
     notify("error", "Task Deleted Successfully");
+  };
+
+  const handleShowTaskDetails = (task) => {
+    setSelectedTask(task);
+    setIsShowTaskDetailsModal(true);
   };
 
   const today = new Date();
@@ -226,65 +238,54 @@ const TaskList = () => {
               <div className="row">
                 {currentTasks.map((val, i) => (
                   <div key={i} className="col-md-6 col-lg-4 ">
-                    <Popover
-                      content={
-                        <div>
-                          <p>{val.describe}</p>
-                          <div className="d-flex justify-content-between">
-                            <div>{val.status}</div>
-                            <div className="text-primary">{val.date}</div>
-                          </div>
+                    <div className="card">
+                      <div className="row py-2 px-3">
+                        <div className="col-4 fw-semibold">
+                          {val.title.charAt(0).toUpperCase() +
+                            val.title.slice(1)}
                         </div>
-                      }
-                      title={
-                        val.title.charAt(0).toUpperCase() + val.title.slice(1)
-                      }
-                      trigger="click"
-                      placement="bottom"
-                    >
-                      <div className="card">
-                        <div className="row py-2 px-3">
-                          <div className="col-6 fw-semibold">
-                            {val.title.charAt(0).toUpperCase() +
-                              val.title.slice(1)}
-                          </div>
-                          <div className="col-6 text-end">
-                            <button
-                              className="btn btn-success m-1"
-                              onClick={() => handleOnclickEdit(val)}
-                            >
-                              <EditOutlined />
-                            </button>
-                            <button
-                              className="btn btn-danger m-1"
-                              onClick={() => handleOnclickDelete(val.id)}
-                            >
-                              <DeleteOutlined />
-                            </button>
-                          </div>
-                        </div>
-                        <div className="card-body d-flex align-items-start ">
-                          <p className="card-text ">
-                            {truncateDescription(
-                              val.describe.charAt(0).toUpperCase() +
-                                val.describe.slice(1),
-                              8
-                            )}
-                          </p>
-                        </div>
-                        <div className="d-flex justify-content-between py-3 px-3">
-                          <div className="fw-lighter">
-                            {val.status}{" "}
-                            {val.status === "completed" ? (
-                              <CheckCircleTwoTone twoToneColor="#52c41a" />
-                            ) : (
-                              <ExclamationCircleTwoTone twoToneColor="#dc3545" />
-                            )}
-                          </div>
-                          <div className="text-primary">{val.date}</div>
+                        <div className="col-8 text-end">
+                          <button
+                            className="btn btn-success m-1"
+                            onClick={() => handleOnclickEdit(val)}
+                          >
+                            <EditOutlined />
+                          </button>
+                          <button
+                            className="btn btn-danger m-1"
+                            onClick={() => handleOnclickDelete(val.id)}
+                          >
+                            <DeleteOutlined />
+                          </button>
+                          <button
+                            className="btn btn-info m-1"
+                            onClick={() => handleShowTaskDetails(val)}
+                          >
+                            <EyeOutlined/>
+                          </button>
                         </div>
                       </div>
-                    </Popover>
+                      <div className="card-body d-flex align-items-start ">
+                        <p className="card-text ">
+                          {truncateDescription(
+                            val.describe.charAt(0).toUpperCase() +
+                              val.describe.slice(1),
+                            8
+                          )}
+                        </p>
+                      </div>
+                      <div className="d-flex justify-content-between py-3 px-3">
+                        <div className="fw-lighter">
+                          {val.status}{" "}
+                          {val.status === "completed" ? (
+                            <CheckCircleTwoTone twoToneColor="#52c41a" />
+                          ) : (
+                            <ExclamationCircleTwoTone twoToneColor="#dc3545" />
+                          )}
+                        </div>
+                        <div className="text-primary">{val.date}</div>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -355,6 +356,24 @@ const TaskList = () => {
             onChange={handleDate}
           />
         </div>
+      </Modal>
+
+      <Modal
+        title={selectedTask ? selectedTask.title.charAt(0).toUpperCase() +
+          selectedTask.title.slice(1) : "Task Details"}
+        open={isShowTaskDetailsModal}
+        onClose={closeTaskDetailsModal}
+        onCancel={closeTaskDetailsModal}
+        footer={null} 
+      >
+        {selectedTask && (
+          <div className="mt-3">
+            <p><strong>Description:</strong> {selectedTask.describe}</p>
+            
+            <p className=""><strong>Status:</strong> {selectedTask.status}</p>
+            <p><strong>Due Date:</strong> {selectedTask.date}</p>
+          </div>
+        )}
       </Modal>
     </div>
   );
