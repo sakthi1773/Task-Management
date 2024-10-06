@@ -1,70 +1,74 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# TASK MANAGER
 
-## Available Scripts
 
-In the project directory, you can run:
+A simple task management website allows users to create, organize, and track tasks easily. It features a clean interface with options to add tasks, set deadlines, and mark them as complete. Users can categorize tasks and view progress at a glance.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1.User can add new task.
 
-### `npm run build`
+2.Edit the task.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3.Delete the task which was added.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4.Filter your task according to due dates. 
+## Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Install npm
 
-### `npm run eject`
+```bash
+  npm install 
+```
+    
+Install Router Packages
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+  npm install react-router-dom 
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Install Redux Packages
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+  npm install react-redux @reduxjs/toolkit
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Install Moment Packages
 
-## Learn More
+```bash
+  npm install moment 
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Install uuidv4 Packages
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+  npm install uuidv4 
+```
 
-### Code Splitting
+Install Antd Packages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+  npm install antd 
+```
 
-### Analyzing the Bundle Size
+Install Bootstrap Packages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+  npm install bootstrap 
+```
 
-### Making a Progressive Web App
+## Screenshots
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![Screenshot 2024-10-07 015715](https://github.com/user-attachments/assets/6befcaa8-fcb6-4636-af76-7585f3b3cf20)
 
-### Advanced Configuration
+![Screenshot 2024-10-07 015727](https://github.com/user-attachments/assets/068a393f-75bf-4671-b9a4-3aacb66e194f)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![Screenshot 2024-10-07 015741](https://github.com/user-attachments/assets/0f673d9d-e662-42d9-bdfe-807743ccb57a)
 
-### Deployment
+![Screenshot 2024-10-07 015755](https://github.com/user-attachments/assets/d540f2ea-e0c5-4200-a10c-d6dea2be49ae)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![Screenshot 2024-10-07 015941](https://github.com/user-attachments/assets/846fab94-abcf-4b6f-9ef3-0886dbd404fc)
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
